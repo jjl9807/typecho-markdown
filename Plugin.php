@@ -11,8 +11,8 @@ use Widget\Options;
 /**
  * 符合 CommonMark 和 GFM（GitHub-Flavored Markdown）规范的 Markdown 解析插件，强大而丰富的功能助你在不同平台上展现一致的出色
  *
- * @author  mrgeneral
- * @package MarkdownParse
+ * @author  TEST
+ * @package MarkdownParseTEST
  * @version 2.4.1
  * @link    https://www.chengxiaobai.cn/
  */
