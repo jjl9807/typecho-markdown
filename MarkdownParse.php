@@ -120,9 +120,9 @@ class MarkdownParse
         }
 
         // Replace single $ at the beginning and end of the text with <div> tags
-        if ($this->isNeedLaTex) {
-            $text  = preg_replace('/(?<!\\)(^\$)([\s\S]+?)(\$)/m', '<div>$2$3$4</div>', $text, -1);
-        }
+        // if ($this->isNeedLaTex) {
+        //     $text  = preg_replace('/(?<!\\)(^\$)([\s\S]+?)(\$)/m', '<div>$2$3$4</div>', $text, -1);
+        // }
 
         return [$text, $config];
     }
@@ -144,7 +144,7 @@ class MarkdownParse
         // If LaTeX is needed, remove <div> tags added during preParse
         if ($this->isNeedLaTex) {
             $htmlContent = str_replace(['<div>$$', '$$</div>'], '$$', $htmlContent);
-            $htmlContent = str_replace(['<div>$', '$</div>'], '$', $htmlContent);
+            // $htmlContent = str_replace(['<div>$', '$</div>'], '$', $htmlContent);
         }
 
         return [$htmlContent, $config];
