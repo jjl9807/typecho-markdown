@@ -24,7 +24,8 @@ class LatexInlineParser implements InlineParserInterface
         }
 
         $latexContent = $cursor->getMatchedText();
-        $inlineContext->getContainer()->appendChild(new Text($latexContent));
+        $inlineContext->getContainer()->appendChild(new Text("LaTeX formula"));
+        // $inlineContext->getContainer()->appendChild(new Text($latexContent));
 
         return true;
     }
