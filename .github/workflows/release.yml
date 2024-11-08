@@ -31,7 +31,8 @@ jobs:
           cp -r vendor temp/
           cp composer.json temp/
           cp MarkdownParse.php temp/
-          cp -r src temp/
+          mkdir temp/src
+          cp -r src/* temp/src/
           php -d phar.readonly=0 vendor/bin/phar-composer build temp vendor.phar
 
       - name: Package Files
