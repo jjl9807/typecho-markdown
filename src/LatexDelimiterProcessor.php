@@ -1,5 +1,5 @@
 <?php
-namespace TypechoPlugin\MarkdownParse\Latex;
+namespace MarkdownParse\LatexInline;
 
 use League\CommonMark\Delimiter\Delimiter;
 use League\CommonMark\Delimiter\Processor\DelimiterProcessorInterface;

@@ -25,7 +25,7 @@ use League\CommonMark\Event\DocumentPreRenderEvent;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Node\Query;
 use League\CommonMark\Node\Inline\Text;
-use TypechoPlugin\MarkdownParse\Latex\LatexDelimiterProcessor;
+use MarkdownParse\LatexInline\LatexDelimiterProcessor;
 
 class MarkdownParse
 {
