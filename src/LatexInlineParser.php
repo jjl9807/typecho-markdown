@@ -1,9 +1,9 @@
 <?php
 namespace MarkdownParse\ParserExtension;
 
-use League\CommonMark\Inline\Parser\InlineParserInterface;
-use League\CommonMark\Inline\Parser\InlineParserContext;
+use League\CommonMark\Parser\Inline\InlineParserInterface;
 use League\CommonMark\Parser\Inline\InlineParserMatch;
+use League\CommonMark\Parser\InlineParserContext;
 use League\CommonMark\Inline\Element\Text;
 
 class LatexInlineParser implements InlineParserInterface
