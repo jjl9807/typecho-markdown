@@ -25,6 +25,7 @@ use League\CommonMark\Event\DocumentPreRenderEvent;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Node\Query;
 use League\CommonMark\Node\Inline\Text;
+use MarkdownParse\Latex\LatexDelimiterProcessor;
 
 class MarkdownParse
 {
@@ -83,6 +84,8 @@ class MarkdownParse
 
         $this->addCommonMarkExtensions($environment);
 
+        $environment->addDelimiterProcessor(new LatexDelimiterProcessor());
+
         $htmlContent = (new MarkdownConverter($environment))->convert($text)->getContent();
 
         list($htmlContent, $config) = $this->postParse($htmlContent, $config);
@@ -119,11 +122,6 @@ class MarkdownParse
             $text  = preg_replace('/(^\${2,})([\s\S]+?)(\${2,})/m', '<div>$1$2$3</div>', $text, -1);
         }
 
-        // Replace single $ at the beginning and end of the text with <div> tags
-        if ($this->isNeedLaTex) {
-            $text  = preg_replace('/(?<![\\$])(\$)(?!\$)([\s\S]+?)(?<![\\$])(\$)(?!\$)/m', '<script>$1$2$3</script>', $text, -1);
-        }
-
         return [$text, $config];
     }
 
@@ -144,7 +142,6 @@ class MarkdownParse
         // If LaTeX is needed, remove <div> tags added during preParse
         if ($this->isNeedLaTex) {
             $htmlContent = str_replace(['<div>$$', '$$</div>'], '$$', $htmlContent);
-            $htmlContent = str_replace(['<script>$', '$</script>'], '$', $htmlContent);
         }
 
         return [$htmlContent, $config];
