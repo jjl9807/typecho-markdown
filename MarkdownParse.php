@@ -25,7 +25,7 @@ use League\CommonMark\Event\DocumentPreRenderEvent;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Node\Query;
 use League\CommonMark\Node\Inline\Text;
-use MarkdownParse\ParserExtension\LatexDelimiterProcessor;
+use MarkdownParse\ParserExtension\LatexInlineParser;
 
 class MarkdownParse
 {
@@ -84,7 +84,7 @@ class MarkdownParse
 
         $this->addCommonMarkExtensions($environment);
 
-        $environment->addDelimiterProcessor(new LatexDelimiterProcessor());
+        $environment->addInlineParser(new LatexInlineParser());
 
         $htmlContent = (new MarkdownConverter($environment))->convert($text)->getContent();
 
