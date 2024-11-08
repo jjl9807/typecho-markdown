@@ -10,22 +10,16 @@ class LatexInlineParser implements InlineParserInterface
 {
     public function getMatchDefinition(): InlineParserMatch
     {
-        return InlineParserMatch::string('$'); 
+        return InlineParserMatch::regex('(?<!\\)(\$)([\s\S]+?)(?<!\\)(\$)');
     }
 
 
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();
-        $startingPosition = $cursor->getPosition();
-
-        if ($cursor->getCharacter() !== '$' || !$cursor->match('/(?<!\\)(\$)([\s\S]+?)(?<!\\)(\$)/')) {
-            return false;
-        }
-
-        $latexContent = $cursor->getMatchedText();
+        $cursor->advanceBy($inlineContext->getFullMatchLength());
         $inlineContext->getContainer()->appendChild(new Text("LaTeX formula"));
-        // $inlineContext->getContainer()->appendChild(new Text($latexContent));
+        // $inlineContext->getContainer()->appendChild(new Text($inlineContext->getFullMatch()));
 
         return true;
     }
