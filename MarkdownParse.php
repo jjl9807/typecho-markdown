@@ -84,7 +84,7 @@ class MarkdownParse
 
         $this->addCommonMarkExtensions($environment);
 
-        $environment->addInlineParser(new LatexInlineParser(), 100);
+        $environment->addInlineParser(new LatexInlineParser(), 200);
 
         $htmlContent = (new MarkdownConverter($environment))->convert($text)->getContent();
 
