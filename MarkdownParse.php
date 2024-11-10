@@ -25,7 +25,9 @@ use League\CommonMark\Event\DocumentPreRenderEvent;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Node\Query;
 use League\CommonMark\Node\Inline\Text;
+use League\CommonMark\Extension\CommonMark\Node\Block\BlockQuote;
 use MarkdownParse\ParserExtension\LatexInlineParser;
+use MarkdownParse\ParserExtension\GithubAlertRenderer;
 
 class MarkdownParse
 {
@@ -85,6 +87,8 @@ class MarkdownParse
         $this->addCommonMarkExtensions($environment);
 
         $environment->addInlineParser(new LatexInlineParser(), 200);
+
+        $environment->addRenderer(BlockQuote::class, new GithubAlertRenderer(), priority: 10);
 
         $htmlContent = (new MarkdownConverter($environment))->convert($text)->getContent();
 
